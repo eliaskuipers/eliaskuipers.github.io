@@ -1,11 +1,254 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="nl">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Ormax</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&display=swap" rel="stylesheet" />
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(180deg, #0a0f1c 0%, #111c2f 100%);
+      color: white;
+      overflow: hidden; /* Scrollen uitzetten */
+    }
+
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 1.5rem 3rem;
+      background-color: rgba(0, 0, 0, 0.2);
+    }
+
+    header h1 {
+      margin: 0;
+      font-size: 1.3rem;
+    }
+
+    header nav a {
+      color: #ffffffcc;
+      text-decoration: none;
+      margin-left: 2rem;
+      font-size: 0.95rem;
+      cursor: pointer;
+    }
+
+    header nav a:hover {
+      color: #ffffff;
+    }
+
+    section {
+      height: 85vh;
+      padding: 0 1rem;
+      display: none; /* standaard niet zichtbaar */
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+    }
+
+    section.active {
+      display: flex; /* zichtbare sectie */
+    }
+
+    .hero h2 {
+      font-size: 2.7rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .hero h2 span {
+      color: #5b9bff;
+    }
+
+    .hero p {
+      max-width: 600px;
+      margin: 0.5rem 0 2rem;
+      font-size: 1.1rem;
+      color: #ccc;
+    }
+
+    .hero a.button {
+      background-color: #545d6d;
+      color: white;
+      padding: 0.75rem 1.5rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.95rem;
+      transition: background-color 0.3s;
+    }
+
+    .hero a.button:hover {
+      background-color: #2563eb;
+    }
+
+    /* Winkel-sectie */
+    #winkel {
+      background-color: #0e1525;
+      text-align: center;
+    }
+
+    #winkel h2 {
+      font-size: 2.2rem;
+      margin-bottom: 2rem;
+    }
+
+    .shop-items {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 2rem;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+
+    .shop-card {
+      background: #121c33;
+      padding: 2rem;
+      border-radius: 16px;
+      width: 300px;
+      text-align: left;
+    }
+
+    .shop-card h3 {
+      margin-top: 0;
+      font-size: 1.3rem;
+    }
+
+    .shop-card p.price {
+      font-size: 1.2rem;
+      margin: 0.5rem 0;
+      color: #5b9bff;
+    }
+
+    .shop-card ul {
+      font-size: 0.95rem;
+      color: #ccc;
+      padding-left: 1rem;
+    }
+
+    .shop-card a {
+      display: inline-block;
+      margin-top: 1rem;
+      background-color: #3b82f6;
+      color: white;
+      padding: 0.5rem 1.2rem;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 0.9rem;
+    }
+
+    .shop-card a:hover {
+      background-color: #2563eb;
+    }
+
+    .wave {
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 100%;
+      z-index: -1;
+    }
+
+    .wave svg {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+  </style>
 </head>
 <body>
-    hoi
+
+  <header>
+    <h1><strong>Ormax</strong></h1>
+    <nav>
+      <a data-section="hero">Home</a>
+      <a data-section="diensten">Diensten</a>
+      <a data-section="over">Over ons</a>
+      <a data-section="winkel">Winkel</a>
+      <a data-section="contact">Contact</a>
+    </nav>
+  </header>
+
+  <section id="hero" class="hero active">
+    <h2>Welkom bij <span>Ormax</span></h2>
+    <p>Wij maken epische <strong>Minecraft trailers</strong>, bieden <strong>technologie support</strong> en leveren <strong>Discord servers op maat</strong> voor jouw community of project.</p>
+    <a href="#" class="button">Neem contact op</a>
+  </section>
+
+  <section id="diensten">
+    <h2>Diensten</h2>
+    <p>Hier komt informatie over onze diensten.</p>
+  </section>
+
+  <section id="over">
+    <h2>Over ons</h2>
+    <p>Hier komt informatie over ons bedrijf.</p>
+  </section>
+
+  <section id="winkel">
+    <h2>Onze <span style="color: #5b9bff;">Winkel</span></h2>
+    <div class="shop-items">
+      <div class="shop-card">
+        <h3>Minecraft Trailer</span></h3>
+        <p class="price">€4,99 EUR</p>
+        <ul>
+          <li>Professioneel gemonteerd</li>
+          <li>30 - 60 seconden lengte</li>
+          <li>4K video support</li>
+          <li>Audio + voice-over optioneel</li>
+          <li>Oplevering binnen 2-4 dagen</li>
+        </ul>
+        <a href="#">Nu bestellen</a>
+      </div>
+
+      <div class="shop-card">
+        <h3>Discord Server op maat</h3>
+        <p class="price">€2,50 EUR</p>
+        <ul>
+          <li>Volledig geconfigureerd</li>
+          <li>Geautomatiseerde rollen & bots</li>
+          <li>Veiligheid en anti-raid setup</li>
+          <li>Design afgestemd op jouw stijl</li>
+          <li>Oplevering binnen 24 uur</li>
+        </ul>
+        <a href="#">Nu bestellen</a>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <p>Hier komt contactinformatie.</p>
+  </section>
+
+  <div class="wave">
+    <svg viewBox="0 0 1440 320"><path fill="#0a0f1c" fill-opacity="1" d="M0,192L60,192C120,192,240,192,360,213.3C480,235,600,277,720,261.3C840,245,960,171,1080,133.3C1200,96,1320,96,1380,96L1440,96L1440,320L1380,320C1320,320,1200,320,1080,320C960,320,840,320,720,320C600,320,480,320,360,320C240,320,120,320,60,320L0,320Z"></path></svg>
+  </div>
+
+  <script>
+    const links = document.querySelectorAll('header nav a');
+    const sections = document.querySelectorAll('section');
+
+    links.forEach(link => {
+      link.addEventListener('click', e => {
+        e.preventDefault();
+        const target = link.getAttribute('data-section');
+        sections.forEach(sec => {
+          if(sec.id === target){
+            sec.classList.add('active');
+          } else {
+            sec.classList.remove('active');
+          }
+        });
+      });
+    });
+  </script>
+  
 </body>
 </html>
+
+
+
+
