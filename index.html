@@ -104,7 +104,7 @@
       top: 9px;
     }
 
-    /* ===== CLEAN MOBILE NAV ===== */
+    /* ===== MOBILE NAV ===== */
     .mobile-nav {
       position: fixed;
       inset: 0;
@@ -254,42 +254,94 @@
       background-color: #2563eb;
     }
 
-    /* ===== RESPONSIVE ===== */
-    @media (max-width: 768px) {
-      nav {
-        display: none;
-      }
-
-      .menu-toggle {
-        display: block;
-      }
-
-      .hero h2 {
-        font-size: 2rem;
-      }
-
-      .hero p {
-        font-size: 1rem;
-        padding: 0 1rem;
-      }
-
-      .shop-card {
-        width: 90%;
-      }
+    /* ===== LOGIN PAGE ===== */
+    #login {
+      background-color: #0d1424;
     }
 
-    @media (max-width: 480px) {
-      .hero h2 {
-        font-size: 1.7rem;
-      }
+    .login-card {
+      background: var(--card-bg);
+      padding: 2.5rem 2rem;
+      border-radius: 16px;
+      width: 100%;
+      max-width: 380px;
+      box-shadow: 0 0 15px rgba(0,0,0,0.4);
+    }
 
-      .hero p {
-        font-size: 0.95rem;
-      }
+    .login-card h2 {
+      margin-bottom: 1.5rem;
+      color: var(--primary);
+    }
 
-      .mobile-nav a {
-        font-size: 1.15rem;
-      }
+    .login-card input {
+      width: 100%;
+      padding: 0.75rem 1rem;
+      margin: 0.5rem 0 1rem;
+      border: none;
+      border-radius: 8px;
+      background-color: #1b253d;
+      color: white;
+      font-size: 1rem;
+    }
+
+    .login-card button {
+      width: 100%;
+      padding: 0.75rem;
+      border: none;
+      border-radius: 8px;
+      background-color: var(--primary);
+      color: white;
+      font-weight: bold;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.3s;
+    }
+
+    .login-card button:hover {
+      background-color: #3b82f6;
+    }
+
+    .google-btn {
+      background-color: white;
+      color: #333;
+      font-weight: 600;
+      margin-top: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .google-btn img {
+      width: 20px;
+      height: 20px;
+    }
+
+    /* ===== GITHUB BUTTON ===== */
+    .github-btn {
+      background-color: #24292f;
+      color: white;
+      font-weight: 600;
+      margin-top: 0.75rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.5rem;
+    }
+
+    .github-btn img {
+      width: 20px;
+      height: 20px;
+      filter: invert(1);
+    }
+
+    /* ===== RESPONSIVE ===== */
+    @media (max-width: 768px) {
+      nav { display: none; }
+      .menu-toggle { display: block; }
+      .hero h2 { font-size: 2rem; }
+      .hero p { font-size: 1rem; padding: 0 1rem; }
+      .shop-card { width: 90%; }
     }
   </style>
 </head>
@@ -305,12 +357,11 @@
       <a data-section="over">Over ons</a>
       <a data-section="winkel">Winkel</a>
       <a data-section="contact">Contact</a>
+      <a data-section="login">Log in</a>
     </nav>
 
     <div class="menu-toggle" id="menuToggle">
-      <span></span>
-      <span></span>
-      <span></span>
+      <span></span><span></span><span></span>
     </div>
   </header>
 
@@ -321,12 +372,13 @@
     <a data-section="over">Over ons</a>
     <a data-section="winkel">Winkel</a>
     <a data-section="contact">Contact</a>
+    <a data-section="login">Log in</a>
   </div>
 
   <section id="hero" class="hero active">
     <h2>Welkom bij <span>Ormax</span></h2>
     <p>Wij maken epische <strong>Minecraft plugins</strong>, <strong>trailers</strong>, bieden <strong>technologie support</strong> en leveren <strong>Discord servers op maat</strong> voor jouw community of project.</p>
-    <a href="#" class="button">Neem contact op</a>
+    <a href="#" class="button" data-section="winkel">Bekijk winkel</a>
   </section>
 
   <section id="diensten">
@@ -380,8 +432,26 @@
     <p>Hier komt contactinformatie.</p>
   </section>
 
+  <section id="login">
+    <div class="login-card">
+      <h2>Log in bij <strong>Ormax</strong></h2>
+      <input type="email" placeholder="E-mailadres" required />
+      <input type="password" placeholder="Wachtwoord" required />
+      <button>Inloggen</button>
+      <button class="google-btn">
+        <img src="https://www.svgrepo.com/show/475656/google-color.svg" alt="Google" />
+        Log in met Google
+      </button>
+      <button class="github-btn">
+        <img src="https://www.svgrepo.com/show/475654/github-color.svg" alt="GitHub" />
+        Log in met GitHub
+      </button>
+      <p style="margin-top:1rem;color:var(--text-light);">Nog geen account? <a href="#" style="color:var(--primary);text-decoration:none;">Registreer hier</a></p>
+    </div>
+  </section>
+
   <script>
-    const links = document.querySelectorAll('nav a, .mobile-nav a');
+    const links = document.querySelectorAll('nav a, .mobile-nav a, .button[data-section]');
     const sections = document.querySelectorAll('section');
     const mobileNav = document.getElementById('mobileNav');
     const menuToggle = document.getElementById('menuToggle');
@@ -390,6 +460,7 @@
       link.addEventListener('click', e => {
         e.preventDefault();
         const target = link.getAttribute('data-section');
+        if (!target) return;
         sections.forEach(sec => sec.classList.toggle('active', sec.id === target));
         mobileNav.classList.remove('active');
         menuToggle.classList.remove('active');
@@ -404,4 +475,3 @@
 
 </body>
 </html>
-
